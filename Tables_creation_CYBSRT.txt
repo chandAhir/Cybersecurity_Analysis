@@ -1,0 +1,125 @@
+1. Steps to create users table (oracle databse) 
+
+CREATE TABLE USERS(
+  USER_ID NUMBER(38) NOT NULL,
+  USERNAME VARCHAR2(25),
+  PASSWORD VARCHAR2(50),
+  EMAIL VARCHAR2(30),
+  STATE VARCHAR2(30)
+);
+
+ALTER TABLE USERS
+ADD CONSTRAINT PK_your_table_name_USER_ID PRIMARY KEY (USER_ID);
+
+
+Name     Null?    Type         
+-------- -------- ------------ 
+USER_ID  NOT NULL NUMBER(38)   
+USERNAME          VARCHAR2(25) 
+PASSWORD          VARCHAR2(50) 
+EMAIL             VARCHAR2(30) 
+STATE             VARCHAR2(30) 
+
+2. steps to create CYBERSECURITY_INCIDENTS table 
+
+CREATE TABLE CYBERSECURITY_INCIDENTS (
+  INCIDENT_ID NUMBER(38) NOT NULL,
+  USER_ID NUMBER(38),
+  INCIDENT_DATE DATE,
+  INCIDENT_TYPE VARCHAR2(25),
+  ATTACK_VECTOR VARCHAR2(25),
+  AFFECTED_SYSTEM VARCHAR2(25),
+  DESCRIPTION VARCHAR2(55)
+);
+
+ALTER TABLE CYBERSECURITY_INCIDENTS
+ADD CONSTRAINT FK_CYBERSECURITY_INCIDENTS_USER_ID
+FOREIGN KEY (USER_ID)
+REFERENCES USERS (USER_ID);
+
+
+
+--------------- -------- ------------ 
+INCIDENT_ID     NOT NULL NUMBER(38)   
+USER_ID                  NUMBER(38)   
+INCIDENT_DATE            DATE         
+INCIDENT_TYPE            VARCHAR2(25) 
+ATTACK_VECTOR            VARCHAR2(25) 
+AFFECTED_SYSTEM          VARCHAR2(25) 
+DESCRIPTION              VARCHAR2(55) 
+
+3. steps to create INCIDENT_SOURCES table 
+
+CREATE TABLE INCIDENT_SOURCES (
+  SOURCE_ID NUMBER(38) NOT NULL,
+  SOURCE_NAME VARCHAR2(50),
+  COUNTRY VARCHAR2(50)
+);
+
+
+Name        Null?    Type         
+----------- -------- ------------ 
+SOURCE_ID   NOT NULL NUMBER(38)   
+SOURCE_NAME          VARCHAR2(50) 
+COUNTRY              VARCHAR2(50) 
+
+4. steps to create CRIMEDETAILS
+
+CREATE TABLE CRIMEDETAILS (
+  INCIDENT_ID NUMBER(38) NOT NULL,
+  USER_ID NUMBER(38),
+  CRIME_TYPE VARCHAR2(25),
+  CRIME_DESCRIPTION VARCHAR2(50),
+  EVIDENCE VARCHAR2(50)
+);
+
+
+Name              Null?    Type         
+----------------- -------- ------------ 
+INCIDENT_ID       NOT NULL NUMBER(38)   
+USER_ID                    NUMBER(38)   
+CRIME_TYPE                 VARCHAR2(25) 
+CRIME_DESCRIPTION          VARCHAR2(50) 
+EVIDENCE                   VARCHAR2(50) 
+
+5. steps to create DEPARTMENTS table 
+
+CREATE TABLE DEPARTMENTS (
+  DEPARTMENT_ID NUMBER(38) NOT NULL,
+  DEPARTMENT_NAME VARCHAR2(50),
+  RESPONSIBLE_PERSON VARCHAR2(15)
+);
+
+
+Name               Null?    Type         
+------------------ -------- ------------ 
+DEPARTMENT_ID      NOT NULL NUMBER(38)   
+DEPARTMENT_NAME             VARCHAR2(50) 
+RESPONSIBLE_PERSON          VARCHAR2(15) 
+
+6. steps to create caseresolution table
+
+
+
+Name               Null?    Type         
+------------------ -------- ------------ 
+RESOLUTION_ID      NOT NULL NUMBER(38)   
+INCIDENT_ID                 NUMBER(38)   
+DEPARTMENT_ID               NUMBER(38)   
+RESOLUTION_DATE             DATE         
+RESOLUTION_DETAILS          VARCHAR2(50) 
+
+CREATE TABLE Caseresolution (
+  RESOLUTION_ID NUMBER(38) NOT NULL,
+  INCIDENT_ID NUMBER(38),
+  DEPARTMENT_ID NUMBER(38),
+  RESOLUTION_DATE DATE,
+  RESOLUTION_DETAILS VARCHAR2(50)
+);
+
+
+
+
+
+
+
